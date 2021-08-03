@@ -29,8 +29,10 @@ jobs:
       run: cd Migrations
     - name: Show me where i am at
       run: pwd
+   - name: Sleep
+      run: sleep 10s
     - name: Run Migrations
-      run: mig --connection="Server=.,1433;Database=master;User Id=sa;Password=P@ssword123;"
+      run: mig --connection="$SQL_CONNECTION"
       
 
 env:
