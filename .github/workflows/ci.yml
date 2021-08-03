@@ -15,7 +15,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 5.0.100
+        dotnet-version: 5.0.302
     - name: Build Reason
       run: echo ${{github.ref}} and ${{github.event_name}}
     - name: Run Sql Server Image
@@ -24,14 +24,10 @@ jobs:
       run: dotnet tool install --global Minimig --add-source https://www.myget.org/F/minimig/api/v3/index.json
     - name: Verify Mig Installation
       run: mig --version
-    - name: Move folder
-      run: cd Migrations
-    - name: Show me where i am at
-      run: pwd
     - name: Sleep
       run: sleep 10s
     - name: Run Migrations
-      run: mig --connection="Server=.,1433;Database=master;User Id=sa;Password=$SQL_PASSWORD;"
+      run: mig --folder="Migrations" --connection="Server=.,1433;Database=master;User Id=sa;Password=$SQL_PASSWORD;"
 
 env:
   DOTNET_CLI_TELEMETRY_OPTOUT: 1
