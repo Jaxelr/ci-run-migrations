@@ -30,7 +30,7 @@ jobs:
     - name: Show me where i am at
       run: pwd
     - name: Run Migrations
-      run: mig --connection="$SQL_CONNECTION"
+      run: mig --connection="Server=.,1433;Database=master;User Id=sa;Password=P@ssword123;"
       
 
 env:
