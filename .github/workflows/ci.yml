@@ -29,11 +29,10 @@ jobs:
       run: cd Migrations
     - name: Show me where i am at
       run: pwd
-   - name: Sleep
+    - name: Sleep
       run: sleep 10s
     - name: Run Migrations
       run: mig --connection="$SQL_CONNECTION"
-      
 
 env:
   DOTNET_CLI_TELEMETRY_OPTOUT: 1
