@@ -18,13 +18,13 @@ jobs:
         dotnet-version: 5.0.302
     - name: Build Reason
       run: echo ${{github.ref}} and ${{github.event_name}}
-    - name: Run Sql Server Image
-      run: docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=$SQLSERVER_PASSWORD" -p 1433:1433 --name sql-env -d mcr.microsoft.com/mssql/server:2019-CU5-ubuntu-18.04
+    - name: Run Docker Images
+      run: docker-compose -f docker/docker-compose.yml up -d
     - name: Install dependencies
       run: dotnet tool install --global Minimig --add-source https://www.myget.org/F/minimig/api/v3/index.json
     - name: Verify Mig Installation
       run: mig --version
-    - name: Sleep # the Sql Server docker image needs time 
+    - name: Sleep # The Sql Server docker image needs time to accept connections
       run: sleep 10s
     - name: Run Migrations
       run: mig --folder="Migrations/SqlServer" --connection="Server=.,1433;Database=master;User Id=sa;Password=$SQLSERVER_PASSWORD;"
