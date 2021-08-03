@@ -25,8 +25,10 @@ jobs:
       run: dotnet tool install --global Minimig --add-source https://www.myget.org/F/minimig/api/v3/index.json
     - name: Verify Mig Installation
       run: mig --version
-    - name: Run migration on sql server image
-      run: cd migrations && mig --connection="$SQL_CONNECTION"
+    - name: Show me where i am at
+      run: pwd
+    - name: List folder
+      run: ls -a
 
 env:
   DOTNET_CLI_TELEMETRY_OPTOUT: 1
