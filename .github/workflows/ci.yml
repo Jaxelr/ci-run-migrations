@@ -26,8 +26,12 @@ jobs:
       run: mig --version
     - name: Sleep # The Sql Server docker image needs time to accept connections
       run: sleep 10s
-    - name: Run Migrations
+    - name: Run SQL Server Migrations # Provider defaults to sqlserver
       run: mig --folder="Migrations/SqlServer" --connection="Server=.,1433;Database=master;User Id=sa;Password=$SQLSERVER_PASSWORD;"
+    - name: Run MySql Migrations
+      run: mig --folder="Migrations/MySql" --connection="Server=127.0.0.1;Port=3306;Database=test;User Id=root;" --provider=mysql
+    - name: Run Postgres Migrations
+      run: mig --folder="Migrations/Postgres" --connection="Server=localhost;Port=5432;Database=postgres;Username=postgres;Password=postgres;" --provider=postgres
 
 env:
   DOTNET_CLI_TELEMETRY_OPTOUT: 1
