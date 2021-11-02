@@ -15,7 +15,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 5.0.302
+        dotnet-version: 5.0.x
     - name: Build Reason
       run: echo ${{github.ref}} and ${{github.event_name}}
     - name: Run Docker Images
@@ -31,7 +31,7 @@ jobs:
     - name: Run MySql Migrations
       run: mig --folder="Migrations/MySql" --connection="Server=127.0.0.1;Port=3306;Database=test;User Id=root;" --provider=mysql
     - name: Run Postgres Migrations
-      run: mig --folder="Migrations/Postgres" --connection="Server=localhost;Port=5432;Database=postgres;Username=postgres;Password=postgres;" --provider=postgres
+      run: mig --folder="Migrations/Postgres" --connection="Server=localhost;Port=5432;Database=postgres;Username=postgres;Password=postgres;" --provider=postgresql
 
 env:
   DOTNET_CLI_TELEMETRY_OPTOUT: 1
