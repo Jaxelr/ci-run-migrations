@@ -35,7 +35,7 @@ services:
   sqlserver:
     # For more details on configuring the Sql Server Docker image, see:
     #   https://hub.docker.com/_/microsoft-mssql-server
-    image: mcr.microsoft.com/mssql/server:2019-CU5-ubuntu-18.04
+    image: mcr.microsoft.com/mssql/server:2019-latest
 
     # Expose the default Sql Server port on localhost
     ports:
